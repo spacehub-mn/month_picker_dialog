@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:month_picker_dialog/src/common.dart';
@@ -23,12 +22,7 @@ class MonthSelector extends StatefulWidget {
     this.firstDate,
     this.lastDate,
     this.locale,
-  })  : assert(openDate != null),
-        assert(selectedDate != null),
-        assert(onMonthSelected != null),
-        assert(upDownPageLimitPublishSubject != null),
-        assert(upDownButtonEnableStatePublishSubject != null),
-        super(key: key);
+  }) : super(key: key);
   @override
   State<StatefulWidget> createState() => MonthSelectorState();
 }
@@ -68,17 +62,18 @@ class MonthSelectorState extends State<MonthSelector> {
     return TextButton(
       style: TextButton.styleFrom(
         padding: EdgeInsets.all(0),
+        shape: CircleBorder(),
         backgroundColor: date.month == widget.selectedDate!.month &&
-            date.year == widget.selectedDate!.year
+                date.year == widget.selectedDate!.year
             ? Theme.of(context).colorScheme.secondary
             : null,
         foregroundColor: date.month == widget.selectedDate!.month &&
-            date.year == widget.selectedDate!.year
+                date.year == widget.selectedDate!.year
             ? Theme.of(context).textTheme.button!.color
             : date.month == DateTime.now().month &&
-            date.year == DateTime.now().year
-            ? Theme.of(context).colorScheme.secondary
-            : null,
+                    date.year == DateTime.now().year
+                ? Theme.of(context).colorScheme.secondary
+                : null,
       ),
       onPressed: isEnabled
           ? () => widget.onMonthSelected(DateTime(date.year, date.month))

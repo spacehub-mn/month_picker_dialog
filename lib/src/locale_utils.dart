@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:intl/intl.dart';
 
 String getLocale(
   BuildContext context, {
@@ -8,9 +7,7 @@ String getLocale(
   if (selectedLocale != null) {
     return '${selectedLocale.languageCode}_${selectedLocale.countryCode}';
   }
-  var locale = Localizations.localeOf(context);
-  if (locale == null) {
-    return Intl.systemLocale;
-  }
+  Locale locale = Localizations.localeOf(context);
+
   return '${locale.languageCode}_${locale.countryCode}';
 }
